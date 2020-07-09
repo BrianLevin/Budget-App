@@ -41,31 +41,10 @@ getDOMstrings: function() {
 
 
 var controller = (function (budgetCtrl, UICtrl) {
+    var DOM = UICtrl.getDOMstrings();
+    var setupEventListeners = function(){
 
-
-var DOM = UICtrl.getDOMstrings();
-
-
-    var ctrlAddItem = function(){
-//1. get the field input data
-
-var input = UICtrl.getInput();
-
-console.log(input);
-
-//2 add item to the budgetcontroller
-
-//3  add item to the UI
-
-//4 calculate the budget
-
-// 5 display the budget in the UI
-
-
-
-    }
-
-   document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
        
 
 
@@ -81,4 +60,39 @@ console.log(input);
 
    });
 
+
+    }
+
+
+
+
+    var ctrlAddItem = function(){
+//1. get the field input data
+
+var input = UICtrl.getInput();
+
+
+//2 add item to the budgetcontroller
+
+//3  add item to the UI
+
+//4 calculate the budget
+
+// 5 display the budget in the UI
+
+
+    };
+
+    return {
+
+        init: function(){
+console.log('application is running');
+
+setupEventListeners();
+
+        }
+    }
+
 })(budgetController, UIController);
+
+controller.init();
