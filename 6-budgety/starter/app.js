@@ -18,6 +18,14 @@ var budgetController = (function () {
 
     };
 
+    var calculateTotal = function(type) {
+var sum=0;
+data.allItems[type].forEach(function(cur){
+sum= sum+ cur.value;
+data.totals[type]=sum;
+});
+    }
+
     var allExpenses = [];
 
     var allIncomes = [];
@@ -34,7 +42,9 @@ var budgetController = (function () {
 
             exp: 0,
             inc: 0
-        }
+        },
+        budget:0,
+        percentage: -1
 
     };
     return {
@@ -68,6 +78,37 @@ var budgetController = (function () {
 
 
         },
+        calculateBudget: function(){
+//  calculate toytqal income and expenses
+calculateTotal('exp');
+calculateTotal('inc');
+
+// calculate the budget
+data.budget = data.totals.inc-data.totals.exp;
+
+// calculate the percentage of income that we spent
+if(data.totals.inc > 0) {
+    data.percentage= Math.round((data.totals.exp/ data.totals.inc) * 100);
+
+
+} else {
+    data.percentage=-1;
+}
+
+
+        },
+
+        getBudget: function() {
+return {
+budget: data.budget,
+totalInc: data.totals.inc,
+totalExp: data.totals.exp,
+percentage: data.percentage
+
+};
+
+        },
+
         testing: function () {
             console.log(data);
         }
@@ -174,10 +215,12 @@ var controller = (function (budgetCtrl, UICtrl) {
 
 var updateBudget = function() {
  //1 calculate the budget
-
+budgetCtrl.calculateBudget();
  // 2return the budget
+ var budget = budgetCtrl.getBudget();
 
  // 3  display the budget in the UI
+ console.log(budget);
 
 }
 
