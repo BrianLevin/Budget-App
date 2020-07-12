@@ -185,6 +185,33 @@ var UIController = (function () {
 
     };
 
+     var formatNumber= function(num, type) {
+        var numSplit, int, dec, type;
+        
+        
+        num= Math.abs(num);
+        num=num.toFixed(2);
+        
+        numSplit= num.split('.');
+        
+        int= numSplit[0];
+        if(int.length > 3) {
+           int=  int.substr(0,int.length-3) + ',' + int.substr(int-length-3,3);
+        }
+        
+        dec= numSpli[1]
+        
+        
+        
+        return (type=== 'exp' ? '-' : '+') + '' + int +  '.' +dec;
+        },
+        
+                getDOMstrings: function () {
+                    return DOMstrings;
+                }
+        
+            };
+
     return {
         getInput: function () {
             return {
@@ -214,7 +241,7 @@ var UIController = (function () {
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description)
 
-            newHtml = newHtml.replace('%value%', obj.value)
+            newHtml = newHtml.replace('%value%', formatNumber(obj.value, type) obj.value);
 
             // insert the HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', NewHtml);
@@ -237,9 +264,12 @@ var UIController = (function () {
             fieldsArr[0].focus();
         },
         displayBudget: function (obj) {
-            document.querySelector(DOMstrings.budgetLabel).textcontent = obj.budget;
-            document.querySelector(DOMstrings.incomeLabel).textcontent = obj.totalInc;
-            document.querySelector(DOMstrings.expensesLabel).textcontent = obj.totalExp;
+            var type
+obj.budget >0  ? type= 'inc' :  type= 'exp';
+
+            document.querySelector(DOMstrings.budgetLabel).textcontent = formatNumber(obj.budget,);
+            document.querySelector(DOMstrings.incomeLabel).textcontent = formatNumber (obj.totalInc, 'inc');
+            document.querySelector(DOMstrings.expensesLabel).textcontent = formatNumber(obj.totalExp, 'exp');
             
             if (obj.percentage > 0) {
                 document.querySelector(DOMstrings.percentageLabel).textcontent = obj.percentage + '%';
@@ -268,11 +298,6 @@ if (percentages[index] > 0) {
 })
 
 },
-        getDOMstrings: function () {
-            return DOMstrings;
-        }
-
-    };
 
 
 })();
