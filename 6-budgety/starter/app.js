@@ -263,6 +263,16 @@ document.querySelector(DOM.container).addeventListener('click', ctrlDeleteItem);
         // 3  display the budget in the UI
         UICtrl.displayBudget(budget);
 
+    };
+
+    var updatePercentages = function () {
+
+  // 1 Calculate percentages
+
+  // 2. read percentages from the budget controller
+
+  // 3.  Update the UI with the new percentages
+
     }
 
 
@@ -283,8 +293,12 @@ document.querySelector(DOM.container).addeventListener('click', ctrlDeleteItem);
             // 4. clear the fields
             UICtrl.clearFields();
 
-            // calculate and update budget
+            //  5. calculate and update budget
             updateBudget();
+
+            // 6. Calculaye and update percentages
+
+            updatePercentages();
         }
 
 var ctrlDeleteItem = function(event) {
