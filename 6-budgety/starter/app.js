@@ -78,6 +78,26 @@ var budgetController = (function () {
 
 
         },
+deleteItem: function(type, id){
+var ids, index
+   var ids=  data.allItems[tyoe].map(function(current){
+
+return current.id;
+
+    });
+
+    index= ids.indexOf(id);
+
+    if(index !== -1) {
+
+data.allitems[type].splice(index, 1)
+
+
+    }
+
+},
+
+
         calculateBudget: function () {
             //  calculate toytqal income and expenses
             calculateTotal('exp');
@@ -268,10 +288,10 @@ itemID= (event.target.parentNode.parentNode.parentNode.parentNode.id)
 if(itemID) {
 splitID=itemID.split('-');
 type= splitID[0];
-ID= split[1];
+ID= parseInt (split[1]);
 
 // 1. delete the item from the data structure
-
+budgetCtrl.deleteItem(type,ID);
 //2 Delete the item from the UI
 
 // 3. update and show the new bright
