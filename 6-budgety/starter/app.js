@@ -222,8 +222,12 @@ var UIController = (function () {
         
                 getDOMstrings: function () {
                     return DOMstrings;
+
                 }
-        
+        nodeListForEach(fields, function(current, index) {
+                for(var i=0; i <list.length; i++) {
+                    callback[list[i, i]];
+                }
             };
 
     return {
@@ -294,9 +298,7 @@ obj.budget >0  ? type= 'inc' :  type= 'exp';
 displayPercentages: function(percentages){
 var fields= document.querySelectorAll(DOMstrings.expensesPercLabel);
 
-var nodeListForEach = function(list, callbackfunction) {
-for (var i= 0; i < list.length; i++) {
-    callbackfunction(list[i], i);
+
 }
 
 }
@@ -342,6 +344,7 @@ var controller = (function (budgetCtrl, UICtrl) {
         });
 
 document.querySelector(DOM.container).addeventListener('click', ctrlDeleteItem);
+document.querySelectory(DOM.inputType).addEventListener('change', UICtrl.changedType);
     };
 
     var updateBudget = function () {
